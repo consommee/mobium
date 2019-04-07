@@ -3,7 +3,7 @@ import cv2
 import pandas as pd
 
 DEVICE_ID = 0
-cap = cv2.VideoCapture(cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(DEVICE_ID)
 
 feature_params = dict( maxCorners = 100,
                        qualityLevel = 0.3,
@@ -73,4 +73,4 @@ cap.release()
 df = pd.DataFrame([ptXList, ptYList, indexList]).T
 # ind = pd.DataFrame([indexList])
 # df = pd.concat(df, ind)
-df.to_csv('tests.csv', encoding='utf-8')
+df.to_csv('test.csv', encoding='utf-8')
