@@ -6,7 +6,7 @@ import csv
 
 
 def main():
-    pts = []
+    lns = []
     #prompt the user for a file to import
     filter = "csv file (*.csv)|*.csv|All Files (*.*)|*.*||"
     filename = rs.OpenFileName("Open Point File", filter)
@@ -14,14 +14,14 @@ def main():
 
     with open(filename, "r") as f:
         reader = csv.reader(f)
-        # for i in range(100):
-        for row in reader:
-            if row[3] == 0:
-                pt = (row[1], row[2], 0)
-                pts.append(pt)
-            rs.AddPolyline(pts)
-
-
+        for i in range(10):
+            tmp = []
+            for row in reader:
+                if float(row[3]) == i:
+                    tmp.append((float(row[1]),float(row[2]), 0))
+            t_tmp = tuple(tmp)
+            rs.AddPolyline(t_tmp)
+            del tmp[:]
 
 
 if __name__ == '__main__':
